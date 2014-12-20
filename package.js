@@ -1,13 +1,18 @@
 Package.describe({
   name: 'liangcc:meteor-accounts-amazon',
-  summary: ' /* Fill me in! */ ',
-  version: '1.0.0',
-  git: ' /* Fill me in! */ '
+  summary: 'Login service for Amazon accounts',
+  version: '0.0.1',
+  git: 'https://github.com/ChihChengLiang/meteor-accounts-amazon.git'
 });
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.2');
-  api.addFiles('liangcc:meteor-accounts-amazon.js');
+  api.use('accounts-base', ['client', 'server']);
+  api.imply('accounts-base', ['client', 'server']);
+  api.use('accounts-oauth', ['client', 'server']);
+  //api.use('amazon', ['client', 'server']); // To be implemented
+
+  api.addFiles("amazon.js");
 });
 
 Package.onTest(function(api) {
