@@ -8,7 +8,8 @@ OAuth.registerService('amazon', 2, null, function(query) {
   return {
     serviceData: {
       id: identity.user_id,
-      accessToken: accessToken
+      accessToken: accessToken,
+      email: identity.email
     },
     options: {profile: {name: identity.name}}
   };
