@@ -15,7 +15,7 @@ if (Meteor.isClient) {
   Accounts.addAutopublishFields({
     forLoggedInUser: ['services.amazon'],
     forOtherUsers: [
-      'services.amazon.user_id', 'services.amazon.name', 'services.amazon.email'
+      'services.amazon.user_id', 'services.amazon.name', 'services.amazon.email','services.amazon.postal_code'
     ]
   });
 }
