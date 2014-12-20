@@ -1,0 +1,16 @@
+<template name="configureLoginServiceDialogForAmazon">
+  <p>
+    First, you'll need to get a Amazon Client ID. Follow these steps:
+  </p>
+  <ol>
+    <li>
+      Visit <a href="https://developer.amazon.com/lwa/sp/overview.html" target="blank">https://developer.amazon.com/lwa/sp/overview.html</a>
+    </li>
+    <li>
+      Get a new security profile
+    </li>
+    <li>
+      Set the <b>Redirect URI</b> to: <span class="url">{{siteUrl}}</span>  (Do not append a path to this URL.)
+    </li>
+  </ol>
+</template>

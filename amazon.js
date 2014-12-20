@@ -9,18 +9,13 @@ if (Meteor.isClient) {
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.credentialRequestCompleteHandler(callback);
-    Facebook.requestCredential(options, credentialRequestCompleteCallback);
+    Amazon.requestCredential(options, credentialRequestCompleteCallback);
   };
 } else {
-//  Accounts.addAutopublishFields({
-//    // publish all fields including access token, which can legitimately
-//    // be used from the client (if transmitted over ssl or on
-//    // localhost). https://developers.facebook.com/docs/concepts/login/access-tokens-and-types/,
-//    // "Sharing of Access Tokens"
-//    forLoggedInUser: ['services.facebook'],
-//    forOtherUsers: [
-//      // https://www.facebook.com/help/167709519956542
-//      'services.facebook.id', 'services.facebook.username', 'services.facebook.gender'
-//    ]
-//  });
+  Accounts.addAutopublishFields({
+    forLoggedInUser: ['services.amazon'],
+    forOtherUsers: [
+      'services.amazon.user_id', 'services.amazon.name', 'services.amazon.email'
+    ]
+  });
 }
