@@ -7,7 +7,7 @@ OAuth.registerService('amazon', 2, null, function(query) {
 
   return {
     serviceData: {
-      id: identity.id,
+      id: identity.user_id,
       accessToken: accessToken
     },
     options: {profile: {name: identity.name}}
@@ -22,21 +22,21 @@ var getAccessToken = function (query) {
   var response;
   try {
     response = HTTP.post(
-      "https://hub.docker.com/api/v1.1/o/authorize/", {headers: {Accept: 'application/json'}, params: {
+      "https://api.amazon.com/auth/o2/token", {headers: {Accept: 'application/json'}, params: {
         code: query.code,
         client_id: config.clientId,
         client_secret: OAuth.openSecret(config.secret),
         grant_type: 'authorization_code',
-        redirect_uri: Meteor.absoluteUrl("_oauth/docker?close"),
+        redirect_uri: Meteor.absoluteUrl("_oauth/amazon?close"),
         state: query.state
       }});
   } catch (err) {
-    throw _.extend(new Error("Failed to complete OAuth handshake with Docker. " + err.message),
+    throw _.extend(new Error("Failed to complete OAuth handshake with Amazon. " + err.message),
                    {response: err.response});
   }
 
   if (response.data.error) { // if the http response was a json object with an error attribute
-    throw new Error("Failed to complete OAuth handshake with Docker. " + response.data.error);
+    throw new Error("Failed to complete OAuth handshake with Amazon. " + response.data.error);
   } else {
     return response.data.access_token;
   }
@@ -45,11 +45,11 @@ var getAccessToken = function (query) {
 var getIdentity = function (accessToken) {
   try {
     var response = HTTP.get(
-      "https://hub.docker.com/api/v1.1/o/members/",
+      "https://api.amazon.com/user/profile",
       {params: {member_id: 'self', access_token: accessToken}});
-    return response.data.results && response.data.results[0];
+    return response.data;
   } catch (err) {
-    throw _.extend(new Error("Failed to fetch identity from Docker. " + err.message),
+    throw _.extend(new Error("Failed to fetch identity from Amazon. " + err.message),
                    {response: err.response});
   }
 };

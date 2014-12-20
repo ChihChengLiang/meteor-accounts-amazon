@@ -31,8 +31,8 @@ Amazon.requestCredential = function (options, credentialRequestCompleteCallback)
   var loginUrl =
         'https://www.amazon.com/ap/oa' +
         '?client_id=' + config.clientId +
-        '&response_type=token' +
-        '&scope=postal_code' + 
+        '&response_type=code' +
+        '&scope=profile' + 
         '&redirect_uri=' + Meteor.absoluteUrl('_oauth/amazon?close') +
         '&state=' + credentialToken;
 
