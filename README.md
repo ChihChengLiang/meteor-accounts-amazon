@@ -1,4 +1,5 @@
 # meteor-accounts-amazon
+[![Build Status](https://travis-ci.org/ChihChengLiang/meteor-accounts-amazon.svg)](https://travis-ci.org/ChihChengLiang/meteor-accounts-amazon)
 A Meteor login service for Amazon.
 
 
